@@ -6,6 +6,7 @@
 
 import requests
 from connectors.core.connector import get_logger, ConnectorError
+from connectors.core.utils import update_connnector_config
 
 logger = get_logger('middesk')
 
@@ -17,6 +18,13 @@ class Middesk(object):
         if self.token is None:
             self.get_token(config)
             self.token = config.get("token")
+
+        self.connector_info = config.get("connector_info")
+        if self.connector_info:
+            update_connnector_config(connector_name=self.connector_info.get("connector_name"),
+                                     version=self.connector_info.get("connector_version"),
+                                     updated_config=config,
+                                     configId=config.get("config_id"))
 
     def get_OAuth_token(self, config):
         headers = {
