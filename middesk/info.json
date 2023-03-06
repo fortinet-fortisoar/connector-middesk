@@ -1,0 +1,1136 @@
+{
+  "name": "middesk",
+  "label": "Middesk",
+  "version": "1.0.0",
+  "description": "Middesk is an identity platform that automates business verification and underwrites decisions. It also provides data on businesses and notifies service providers of changes to its customer base allowing them to form an accurate picture of their customers and offer the critical products their customers need to establish,operate, and maintain their businesses.",
+  "publisher": "Fortinet",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "category": "IT Service Management",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "ingestion_supported": true,
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Get Access Token",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "select",
+        "options": [
+          "API keys",
+          "OAuth access tokens - on behalf of account owners"
+        ],
+        "name": "auth_type",
+        "value": "API keys",
+        "description": "Select the method using which you will get authenticated to access the Middesk APIs. You can choose between API keys or OAuth access tokens - on behalf of account owners. For more information, see the Getting Access Code section.",
+        "onchange": {
+          "API keys": [
+            {
+              "title": "API Key",
+              "name": "token",
+              "type": "text",
+              "description": "Specify the PolySwarm API Key through which you will connect and perform actions on PolySwarm.",
+              "tooltip": "Specify the PolySwarm API Key through which you will connect and perform actions on PolySwarm.",
+              "required": true,
+              "editable": true,
+              "visible": true
+            }
+          ],
+          "OAuth access tokens - on behalf of account owners": [
+            {
+              "title": "Client ID",
+              "name": "client_id",
+              "type": "text",
+              "description": "Unique ID of the Middesk that is used to create an authentication token required to access the API.",
+              "tooltip": "Unique ID of the Middesk that is used to create an authentication token required to access the API.",
+              "required": true,
+              "editable": true,
+              "visible": true
+            },
+            {
+              "title": "Client Secret",
+              "name": "client_secret",
+              "type": "password",
+              "description": "Unique Client Secret of the Middesk that is used to create an authentication token required to access the API.",
+              "tooltip": "Unique Client Secret of the Middesk that is used to create an authentication token required to access the API.",
+              "required": true,
+              "editable": true,
+              "visible": true
+            },
+            {
+              "title": "Authorization Code",
+              "name": "code",
+              "type": "password",
+              "tooltip": "The authorization code that you acquired in the authorization step.",
+              "description": "The authorization code that you acquired during the authorization step. For more information, see Getting Access Code section. using the OAuth access tokens - on behalf of account owners",
+              "required": true,
+              "editable": true,
+              "visible": true
+            },
+            {
+              "title": "Redirect URI",
+              "name": "redirect_uri",
+              "type": "text",
+              "tooltip": "The redirect_uri which you have provided while generating the Access Code",
+              "description": "(Only Applicable to On behalf of User \u2013 Delegate Permission) The redirect_uri of your app, where authentication responses can be sent and received by your app. The redirect URL that you specify here must exactly match one of the redirect_uri's you have registered in your app registration portal.",
+              "placeholder": "E.g. https://www.example.com/redirect",
+              "required": true,
+              "editable": true,
+              "visible": true
+            }
+          ]
+        }
+      },
+      {
+        "title": "Verify SSL",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "title": "List Businesses",
+      "description": "Retrieves the details of all Businesses that have run through Middesk.",
+      "operation": "list_businesses",
+      "category": "investigation",
+      "annotation": "list_businesses",
+      "parameters": [
+        {
+          "title": "Offset",
+          "description": "Specify the page offset at which you'd like to resume fetching Businesses",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "page",
+          "tooltip": "Specify the page offset at which you'd like to resume fetching Businesses."
+        },
+        {
+          "title": "Limit",
+          "description": "Specify the number of Businesses to fetch. Default is 25 Maximum is 30.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "per_page",
+          "tooltip": "Specify the number of Businesses to fetch. Default is 25 Maximum is 30."
+        }
+      ],
+      "output_schema": {
+        "object": "",
+        "data": [
+          {
+            "object": "",
+            "id": "",
+            "external_id": "",
+            "name": "",
+            "created_at": "",
+            "updated_at": "",
+            "status": "",
+            "tags": [],
+            "subscriptions_enabled": "",
+            "review": {
+              "object": "",
+              "id": "",
+              "created_at": "",
+              "updated_at": "",
+              "completed_at": "",
+              "tasks": [
+                {
+                  "category": "",
+                  "key": "",
+                  "label": "",
+                  "message": "",
+                  "name": "",
+                  "status": "",
+                  "sub_label": ""
+                }
+              ],
+              "assignee": {
+                "object": "",
+                "id": "",
+                "name": "",
+                "email": "",
+                "roles": [],
+                "image_url": "",
+                "last_login_at": "",
+                "settings": {
+                  "receives_agent_emails": ""
+                }
+              }
+            }
+          }
+        ],
+        "url": "",
+        "has_more": "",
+        "total_count": ""
+      },
+      "enabled": true
+    },
+    {
+      "title": "Get Business",
+      "description": "Retrieves the details of an existing business based on the id of a Business you have provided",
+      "operation": "get_business",
+      "category": "investigation",
+      "annotation": "get_business",
+      "parameters": [
+        {
+          "title": "ID",
+          "description": "Specify the id of the Business to retrieve",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "id",
+          "tooltip": "Specify the id of the Business to retrieve"
+        }
+      ],
+      "output_schema": {
+        "object": "",
+        "id": "",
+        "external_id": "",
+        "name": "",
+        "created_at": "",
+        "updated_at": "",
+        "status": "",
+        "tags": [],
+        "requester": {
+          "id": "",
+          "type": "",
+          "name": "",
+          "requested_at": ""
+        },
+        "assignee_id": "",
+        "supported_document_types": [],
+        "review": {
+          "object": "",
+          "id": "",
+          "created_at": "",
+          "updated_at": "",
+          "completed_at": "",
+          "tasks": [
+            {
+              "category": "",
+              "key": "",
+              "label": "",
+              "message": "",
+              "name": "",
+              "status": "",
+              "sub_label": "",
+              "sources": [
+                {
+                  "id": "",
+                  "type": "",
+                  "metadata": {
+                    "name": "",
+                    "submitted": ""
+                  }
+                }
+              ]
+            }
+          ],
+          "assignee": {
+            "object": "",
+            "id": "",
+            "name": "",
+            "email": "",
+            "roles": [],
+            "image_url": "",
+            "last_login_at": "",
+            "settings": {
+              "receives_agent_emails": ""
+            }
+          }
+        },
+        "tin": {
+          "name": "",
+          "tin": "",
+          "mismatch": "",
+          "unknown": "",
+          "verified": "",
+          "error": "",
+          "updated_at": "",
+          "business_id": "",
+          "issued": "",
+          "verified_by": ""
+        },
+        "business_batch_id": "",
+        "formation": {
+          "entity_type": "",
+          "formation_date": "",
+          "formation_state": "",
+          "created_at": "",
+          "updated_at": ""
+        },
+        "website": {
+          "object": "",
+          "id": "",
+          "url": "",
+          "status": "",
+          "title": "",
+          "description": "",
+          "domain": {
+            "domain": "",
+            "domain_id": "",
+            "creation_date": "",
+            "expiration_date": "",
+            "registrar": {
+              "organization": "",
+              "name": "",
+              "url": ""
+            }
+          },
+          "pages": [
+            {
+              "url": "",
+              "category": "",
+              "screenshot_url": ""
+            }
+          ],
+          "created_at": "",
+          "updated_at": "",
+          "parked": "",
+          "error": "",
+          "business_id": "",
+          "business_name_match": "",
+          "phone_numbers": [],
+          "addresses": []
+        },
+        "watchlist": {
+          "object": "",
+          "id": "",
+          "hit_count": "",
+          "agencies": [
+            {
+              "abbr": "",
+              "name": "",
+              "org": ""
+            }
+          ],
+          "lists": [
+            {
+              "object": "",
+              "agency": "",
+              "agency_abbr": "",
+              "organization": "",
+              "title": "",
+              "abbr": "",
+              "results": []
+            }
+          ],
+          "people": []
+        },
+        "bankruptcies": [],
+        "certifications": [],
+        "documents": [],
+        "liens": [],
+        "names": [
+          {
+            "object": "",
+            "id": "",
+            "name": "",
+            "submitted": "",
+            "type": "",
+            "business_id": "",
+            "sources": [
+              {
+                "id": "",
+                "type": "",
+                "metadata": {}
+              }
+            ]
+          }
+        ],
+        "addresses": [
+          {
+            "object": "",
+            "address_line1": "",
+            "address_line2": "",
+            "city": "",
+            "state": "",
+            "postal_code": "",
+            "full_address": "",
+            "submitted": "",
+            "id": "",
+            "latitude": "",
+            "longitude": "",
+            "property_type": "",
+            "deliverable": "",
+            "deliverability_analysis": "",
+            "street_view_available": "",
+            "labels": [],
+            "created_at": "",
+            "updated_at": "",
+            "registered_agent_name": "",
+            "cmra": "",
+            "business_id": "",
+            "sources": [
+              {
+                "id": "",
+                "type": "",
+                "metadata": {
+                  "state": "",
+                  "status": "",
+                  "file_number": "",
+                  "jurisdiction": ""
+                }
+              }
+            ]
+          }
+        ],
+        "people": [],
+        "phone_numbers": [],
+        "profiles": [],
+        "registrations": [
+          {
+            "object": "",
+            "id": "",
+            "business_id": "",
+            "name": "",
+            "status": "",
+            "sub_status": "",
+            "status_details": "",
+            "jurisdiction": "",
+            "entity_type": "",
+            "file_number": "",
+            "addresses": [],
+            "officers": [],
+            "registered_agent": {},
+            "registration_date": "",
+            "state": "",
+            "source": ""
+          }
+        ],
+        "orders": [
+          {
+            "object": "",
+            "id": "",
+            "created_at": "",
+            "updated_at": "",
+            "completed_at": "",
+            "status": "",
+            "product": "",
+            "subproducts": []
+          }
+        ],
+        "industry_classification": {
+          "object": "",
+          "id": "",
+          "status": "",
+          "categories": [
+            {
+              "name": "",
+              "sector": "",
+              "category": "",
+              "score": "",
+              "high_risk": "",
+              "naics_codes": [],
+              "sic_codes": []
+            }
+          ],
+          "created_at": "",
+          "completed_at": "",
+          "website": {
+            "url": "",
+            "status": "",
+            "parked": ""
+          }
+        },
+        "subscription": "",
+        "tax_exempt_organization": "",
+        "fmcsa_registrations": [],
+        "litigations": [],
+        "actions": [
+          {
+            "id": "",
+            "type_of": "",
+            "author": "",
+            "rule_set": "",
+            "note": "",
+            "reason": "",
+            "metadata": {
+              "current_status": "",
+              "previous_status": ""
+            },
+            "created_at": "",
+            "updated_at": ""
+          }
+        ],
+        "submitted": {
+          "object": "",
+          "name": "",
+          "addresses": [
+            {
+              "city": "",
+              "state": "",
+              "postal_code": "",
+              "address_line1": "",
+              "address_line2": ""
+            }
+          ],
+          "orders": "",
+          "people": [],
+          "phone_numbers": "",
+          "tags": "",
+          "external_id": "",
+          "tin": {
+            "tin": ""
+          },
+          "website": {
+            "url": ""
+          },
+          "assignee_id": "",
+          "formation": "",
+          "names": ""
+        }
+      },
+      "enabled": true
+    },
+    {
+      "title": "Update Business",
+      "description": "Updates an existing business based on the id of a Business you have provided",
+      "operation": "update_business",
+      "category": "investigation",
+      "annotation": "update_business",
+      "parameters": [
+        {
+          "title": "ID",
+          "description": "Specify the id of the Business to retrieve",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "id",
+          "tooltip": "Specify the id of the Business to retrieve"
+        },
+        {
+          "title": "Name of Business",
+          "description": "Specify the legal entity name of a Business",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "name",
+          "tooltip": "Specify the legal entity name of a Business"
+        },
+        {
+          "title": "Status",
+          "description": "Specify the status of the business lifecycle.Note can only be done once the business status has reached in_review.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "status",
+          "tooltip": "Specify the status of the business lifecycle.Note can only be done once the business status has reached in_review.",
+          "options": [
+            "approved",
+            "rejected"
+          ]
+        },
+        {
+          "title": "Assignee ID",
+          "description": "Specify the user ID to set the assignee for review",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "assignee_id",
+          "tooltip": "Specify the user ID to set the assignee for review"
+        },
+        {
+          "title": "Website",
+          "description": "Specify the business website",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "website",
+          "tooltip": "Specify the business website"
+        },
+        {
+          "title": "External ID",
+          "description": "Specify the custom field identifier for system outside Middesk",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "external_id",
+          "tooltip": "Specify the custom field identifier for system outside Middesk"
+        },
+        {
+          "title": "Phone Number",
+          "description": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "phone_numbers",
+          "tooltip": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values."
+        },
+        {
+          "title": "Addresses",
+          "description": "Specify the list of addresses (places of business)",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "addresses",
+          "tooltip": "Specify the list of addresses (places of business) e.g: [\n        {\n            \"address_line1\": \"577 howard street\",\n            \"address_line2\": \"suite 400\",\n            \"city\": \"san francisco\",\n            \"state\": \"CA\",\n            \"postal_code\": \"94105\",\n            \"full_address\": \"577 howard st, suite 400, san francisco CA 94105\"\n        }\n    ] Note address_line1, city, state, postal_code are mandatory fields"
+        },
+        {
+          "title": "People",
+          "description": "Specify a list of people associated with the business",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "people",
+          "tooltip": "Specify a list of people associated with the business e.g: [\n        {\n            \"name\": \"Kyle Mack\",\n            \"first_name\": \"Kyle\",\n            \"last_name\": \"Kyle\",\n            \"dob\": \"YYYY/MM/DD\",\n            \"ssn\": \"abc\",\n            \"address_line1\": \"577 howard street\",\n            \"address_line2\": \"suite 400\",\n            \"city\": \"san francisco\",\n            \"state\": \"CA\",\n            \"postal_code\": \"94105\",\n            \"phone_number\": \"6507970487\",\n            \"email\": \"abc@xyz.com\",\n            \"device_session_id\": \"abc\"\n        }\n    ] Note name is a mandatory field"
+        }
+      ],
+      "output_schema": {
+        "object": "",
+        "id": "",
+        "external_id": "",
+        "name": "",
+        "created_at": "",
+        "updated_at": "",
+        "status": "",
+        "tags": [],
+        "requester": {
+          "id": "",
+          "type": "",
+          "name": "",
+          "requested_at": ""
+        },
+        "assignee_id": "",
+        "supported_document_types": [],
+        "review": {
+          "object": "",
+          "id": "",
+          "created_at": "",
+          "updated_at": "",
+          "completed_at": "",
+          "tasks": [
+            {
+              "category": "",
+              "key": "",
+              "label": "",
+              "message": "",
+              "name": "",
+              "status": "",
+              "sub_label": "",
+              "sources": [
+                {
+                  "id": "",
+                  "type": "",
+                  "metadata": {
+                    "name": "",
+                    "submitted": ""
+                  }
+                }
+              ]
+            }
+          ],
+          "assignee": {
+            "object": "",
+            "id": "",
+            "slug": "",
+            "name": "",
+            "parent_account": ""
+          }
+        },
+        "tin": {
+          "name": "",
+          "tin": "",
+          "mismatch": "",
+          "unknown": "",
+          "verified": "",
+          "error": "",
+          "updated_at": "",
+          "business_id": "",
+          "issued": "",
+          "verified_by": ""
+        },
+        "business_batch_id": "",
+        "formation": {
+          "entity_type": "",
+          "formation_date": "",
+          "formation_state": "",
+          "created_at": "",
+          "updated_at": ""
+        },
+        "website": {
+          "object": "",
+          "id": "",
+          "url": "",
+          "status": "",
+          "title": "",
+          "description": "",
+          "domain": "",
+          "pages": [],
+          "created_at": "",
+          "updated_at": "",
+          "parked": "",
+          "error": "",
+          "business_id": "",
+          "business_name_match": "",
+          "phone_numbers": [],
+          "addresses": []
+        },
+        "watchlist": {
+          "object": "",
+          "id": "",
+          "hit_count": "",
+          "agencies": [
+            {
+              "abbr": "",
+              "name": "",
+              "org": ""
+            }
+          ],
+          "lists": [
+            {
+              "object": "",
+              "agency": "",
+              "agency_abbr": "",
+              "organization": "",
+              "title": "",
+              "abbr": "",
+              "results": []
+            }
+          ],
+          "people": []
+        },
+        "bankruptcies": [],
+        "certifications": [],
+        "documents": [],
+        "liens": [],
+        "names": [
+          {
+            "object": "",
+            "id": "",
+            "name": "",
+            "submitted": "",
+            "type": "",
+            "business_id": "",
+            "sources": []
+          }
+        ],
+        "addresses": [
+          {
+            "object": "",
+            "address_line1": "",
+            "address_line2": "",
+            "city": "",
+            "state": "",
+            "postal_code": "",
+            "full_address": "",
+            "submitted": "",
+            "id": "",
+            "latitude": "",
+            "longitude": "",
+            "property_type": "",
+            "deliverable": "",
+            "deliverability_analysis": "",
+            "street_view_available": "",
+            "labels": [],
+            "created_at": "",
+            "updated_at": "",
+            "registered_agent_name": "",
+            "cmra": "",
+            "business_id": "",
+            "sources": [
+              {
+                "id": "",
+                "type": "",
+                "metadata": {
+                  "state": "",
+                  "status": "",
+                  "file_number": "",
+                  "jurisdiction": ""
+                }
+              }
+            ]
+          }
+        ],
+        "people": [],
+        "phone_numbers": [
+          {
+            "object": "",
+            "phone_number": ""
+          }
+        ],
+        "profiles": [],
+        "registrations": [
+          {
+            "object": "",
+            "id": "",
+            "business_id": "",
+            "name": "",
+            "status": "",
+            "sub_status": "",
+            "status_details": "",
+            "jurisdiction": "",
+            "entity_type": "",
+            "file_number": "",
+            "addresses": [],
+            "officers": [],
+            "registered_agent": {},
+            "registration_date": "",
+            "state": "",
+            "source": ""
+          }
+        ],
+        "orders": [
+          {
+            "object": "",
+            "id": "",
+            "created_at": "",
+            "updated_at": "",
+            "completed_at": "",
+            "status": "",
+            "product": "",
+            "subproducts": []
+          }
+        ],
+        "industry_classification": "",
+        "subscription": "",
+        "tax_exempt_organization": "",
+        "fmcsa_registrations": [],
+        "litigations": [],
+        "actions": [
+          {
+            "id": "",
+            "type_of": "",
+            "author": "",
+            "rule_set": "",
+            "note": "",
+            "reason": "",
+            "metadata": {
+              "current_status": "",
+              "previous_status": ""
+            },
+            "created_at": "",
+            "updated_at": ""
+          }
+        ],
+        "submitted": {
+          "object": "",
+          "name": "",
+          "addresses": [
+            {
+              "city": "",
+              "state": "",
+              "postal_code": "",
+              "address_line1": "",
+              "address_line2": ""
+            }
+          ],
+          "orders": "",
+          "people": [],
+          "phone_numbers": "",
+          "tags": "",
+          "external_id": "",
+          "tin": {
+            "tin": ""
+          },
+          "website": {
+            "url": ""
+          },
+          "assignee_id": "",
+          "formation": "",
+          "names": ""
+        }
+      },
+      "enabled": true
+    },
+    {
+      "title": "Create Business",
+      "description": "Creates a new Business for verification and due diligence. Once created, Middesk will automatically begin the process of verifying the legitimacy of this Business and evaluating a number of other risk signals about this Business entity.",
+      "operation": "create_business",
+      "category": "investigation",
+      "annotation": "create_business",
+      "parameters": [
+        {
+          "title": "Name",
+          "description": "Specify the legal entity name of a Business",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "name",
+          "tooltip": "Specify the legal entity name of a Business"
+        },
+        {
+          "title": "Tax Identification Number",
+          "description": "Specify the business' tax identification number",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tin",
+          "tooltip": "Specify the business' tax identification number"
+        },
+        {
+          "title": "Website",
+          "description": "Specify the business website",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "website",
+          "tooltip": "Specify the business website"
+        },
+        {
+          "title": "Phone Numbers",
+          "description": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "phone_numbers",
+          "tooltip": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values."
+        },
+        {
+          "title": "External ID",
+          "description": "Specify the custom field identifier for system outside Middesk",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "external_id",
+          "tooltip": "Specify the custom field identifier for system outside Middesk"
+        },
+        {
+          "title": "Orders",
+          "description": "Specify the orders for the types of products you would like Middesk to fulfill for the business you're submitting.You can specify multiple orders as comma-separated values.For more details (https://docs.middesk.com/reference/order). Valid values are identity, tin, documents, and liens.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "orders",
+          "tooltip": "Specify the orders for the types of products you would like Middesk to fulfill for the business you're submitting.You can specify multiple orders as comma-separated values.For more details (https://docs.middesk.com/reference/order). Valid values are identity, tin, documents, and liens."
+        },
+        {
+          "title": "Tags",
+          "description": "Specify the tags. You can specify multiple tags as comma-separated values. Any tag can be added (Note that low_priority is a reserved tag, and will affect business turnaround time).",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tags",
+          "tooltip": "Specify the tags. You can specify multiple tags as comma-separated values. Any tag can be added (Note that low_priority is a reserved tag, and will affect business turnaround time)."
+        },
+        {
+          "title": "Formation",
+          "description": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in)",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "formation",
+          "tooltip": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in)"
+        },
+        {
+          "title": "Names",
+          "description": "Specify a list of entity names of the business (Doing Business As names supported here)",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "names",
+          "tooltip": "Specify a list of entity names of the business (Doing Business As names supported here) e.g: [\n        {\n            \"name\": \"abc\",\n            \"name_type\": \"dba\"\n        }\n    ]"
+        },
+        {
+          "title": "Addresses",
+          "description": "Specify the list of addresses (places of business)",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "addresses",
+          "tooltip": "Specify the list of addresses (places of business) e.g: [\n        {\n            \"address_line1\": \"577 howard street\",\n            \"address_line2\": \"suite 400\",\n            \"city\": \"san francisco\",\n            \"state\": \"CA\",\n            \"postal_code\": \"94105\",\n            \"full_address\": \"577 howard st, suite 400, san francisco CA 94105\"\n        }\n    ] Note address_line1, city, state, postal_code are mandatory fields"
+        },
+        {
+          "title": "People",
+          "description": "Specify a list of people associated with the business",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "people",
+          "tooltip": "Specify a list of people associated with the business e.g: [\n        {\n            \"name\": \"Kyle Mack\",\n            \"first_name\": \"Kyle\",\n            \"last_name\": \"Kyle\",\n            \"dob\": \"YYYY/MM/DD\",\n            \"ssn\": \"abc\",\n            \"address_line1\": \"577 howard street\",\n            \"address_line2\": \"suite 400\",\n            \"city\": \"san francisco\",\n            \"state\": \"CA\",\n            \"postal_code\": \"94105\",\n            \"phone_number\": \"6507970487\",\n            \"email\": \"abc@xyz.com\",\n            \"device_session_id\": \"abc\"\n        }\n    ] Note name is a mandatory field"
+        }
+      ],
+      "output_schema": {
+        "object": "",
+        "id": "",
+        "external_id": "",
+        "name": "",
+        "created_at": "",
+        "updated_at": "",
+        "status": "",
+        "tags": [],
+        "requester": {
+          "id": "",
+          "type": "",
+          "name": "",
+          "requested_at": ""
+        },
+        "assignee_id": "",
+        "supported_document_types": [],
+        "review": "",
+        "tin": {
+          "name": "",
+          "tin": "",
+          "mismatch": "",
+          "unknown": "",
+          "verified": "",
+          "error": "",
+          "updated_at": "",
+          "business_id": "",
+          "issued": "",
+          "verified_by": ""
+        },
+        "business_batch_id": "",
+        "formation": "",
+        "website": {
+          "object": "",
+          "id": "",
+          "url": "",
+          "status": "",
+          "title": "",
+          "description": "",
+          "domain": "",
+          "pages": [],
+          "created_at": "",
+          "updated_at": "",
+          "parked": "",
+          "error": "",
+          "business_id": "",
+          "business_name_match": "",
+          "phone_numbers": [],
+          "addresses": []
+        },
+        "watchlist": "",
+        "bankruptcies": [],
+        "certifications": [],
+        "documents": [],
+        "liens": [],
+        "names": [
+          {
+            "object": "",
+            "id": "",
+            "name": "",
+            "submitted": "",
+            "type": "",
+            "business_id": "",
+            "sources": []
+          }
+        ],
+        "addresses": [
+          {
+            "object": "",
+            "address_line1": "",
+            "address_line2": "",
+            "city": "",
+            "state": "",
+            "postal_code": "",
+            "full_address": "",
+            "submitted": "",
+            "id": "",
+            "latitude": "",
+            "longitude": "",
+            "property_type": "",
+            "deliverable": "",
+            "deliverability_analysis": "",
+            "street_view_available": "",
+            "labels": [],
+            "created_at": "",
+            "updated_at": "",
+            "registered_agent_name": "",
+            "cmra": "",
+            "business_id": "",
+            "sources": []
+          }
+        ],
+        "people": [],
+        "phone_numbers": [
+          {
+            "object": "",
+            "phone_number": ""
+          }
+        ],
+        "profiles": [],
+        "registrations": [],
+        "orders": [
+          {
+            "object": "",
+            "id": "",
+            "created_at": "",
+            "updated_at": "",
+            "completed_at": "",
+            "status": "",
+            "product": "",
+            "subproducts": []
+          }
+        ],
+        "industry_classification": "",
+        "subscription": "",
+        "tax_exempt_organization": "",
+        "fmcsa_registrations": [],
+        "litigations": [],
+        "actions": [],
+        "submitted": {
+          "object": "",
+          "name": "",
+          "addresses": [
+            {
+              "full_address": "",
+              "address_line1": "",
+              "address_line2": "",
+              "city": "",
+              "state": "",
+              "postal_code": ""
+            }
+          ],
+          "orders": [
+            {
+              "product": ""
+            }
+          ],
+          "people": [],
+          "phone_numbers": [
+            {
+              "phone_number": ""
+            }
+          ],
+          "tags": [],
+          "external_id": "",
+          "tin": {
+            "tin": ""
+          },
+          "website": {
+            "url": ""
+          },
+          "assignee_id": "",
+          "formation": {
+            "formation_state": ""
+          },
+          "names": ""
+        }
+      },
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,339 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "be0266c5-1be3-4cd6-a3a5-82bc3fd23cf9",
+      "@type": "WorkflowCollection",
+      "name": "Sample - Middesk - 1.0.0",
+      "description": "Middesk is an identity platform that automates business verification and underwrites decisions. It also provides data on businesses and notifies service providers of changes to its customer base allowing them to form an accurate picture of their customers and offer the critical products their customers need to establish,operate, and maintain their businesses.",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "Middesk",
+        "middesk"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "b16c050b-59c9-4f86-8d81-b42f6c44f11f",
+          "collection": "/api/3/workflow_collections/be0266c5-1be3-4cd6-a3a5-82bc3fd23cf9",
+          "triggerLimit": null,
+          "description": "Retrieves the details of all Businesses that have run through Middesk.",
+          "name": "List Businesses",
+          "tag": "#Middesk",
+          "recordTags": [
+            "Middesk",
+            "middesk"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/d05bc3d0-21da-4d12-864f-01ff0935d823",
+          "steps": [
+            {
+              "uuid": "d05bc3d0-21da-4d12-864f-01ff0935d823",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "21b72a7e-6643-4fad-84b0-f72b915bf236",
+                "title": "Middesk: List Businesses",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "a812d503-38e0-4868-a9bd-9bf781e095a1",
+              "@type": "WorkflowStep",
+              "name": "List Businesses",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Middesk",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "middesk",
+                "operation": "list_businesses",
+                "operationTitle": "List Businesses",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "8d1f8070-24f4-44d5-9b9f-fba4349363ce",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> List Businesses",
+              "sourceStep": "/api/3/workflow_steps/d05bc3d0-21da-4d12-864f-01ff0935d823",
+              "targetStep": "/api/3/workflow_steps/a812d503-38e0-4868-a9bd-9bf781e095a1"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "955bb820-05c0-41f4-94ef-4b6a36d465d4",
+          "collection": "/api/3/workflow_collections/be0266c5-1be3-4cd6-a3a5-82bc3fd23cf9",
+          "triggerLimit": null,
+          "description": "Retrieves the details of an existing business based on the id of a Business you have provided",
+          "name": "Get Business",
+          "tag": "#Middesk",
+          "recordTags": [
+            "Middesk",
+            "middesk"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/7bdacbef-74f9-4fb9-9719-e4f2abeb98a2",
+          "steps": [
+            {
+              "uuid": "7bdacbef-74f9-4fb9-9719-e4f2abeb98a2",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "45fbe060-f169-4ef4-ae69-d5f65c1a6841",
+                "title": "Middesk: Get Business",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "f42f5f07-2aae-4984-8ed6-22a8b77397c7",
+              "@type": "WorkflowStep",
+              "name": "Get Business",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Middesk",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "middesk",
+                "operation": "get_business",
+                "operationTitle": "Get Business",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "5b420d47-9a7e-4eb0-a148-7459f58e423a",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Business",
+              "sourceStep": "/api/3/workflow_steps/7bdacbef-74f9-4fb9-9719-e4f2abeb98a2",
+              "targetStep": "/api/3/workflow_steps/f42f5f07-2aae-4984-8ed6-22a8b77397c7"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "9f2007c6-929b-4399-9662-996b37f2cb9f",
+          "collection": "/api/3/workflow_collections/be0266c5-1be3-4cd6-a3a5-82bc3fd23cf9",
+          "triggerLimit": null,
+          "description": "Updates an existing business based on the id of a Business you have provided",
+          "name": "Update Business",
+          "tag": "#Middesk",
+          "recordTags": [
+            "Middesk",
+            "middesk"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/bd86ebc4-bfc5-4b2c-9c4f-5cbe849ae6f9",
+          "steps": [
+            {
+              "uuid": "bd86ebc4-bfc5-4b2c-9c4f-5cbe849ae6f9",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "9265dfc0-697c-47fb-ab89-4f29aa9c4bb7",
+                "title": "Middesk: Update Business",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "be5116f9-64f5-48a5-9e21-e606beb0ad26",
+              "@type": "WorkflowStep",
+              "name": "Update Business",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Middesk",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "middesk",
+                "operation": "update_business",
+                "operationTitle": "Update Business",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "20926261-7da3-4ea6-b112-7099e4552bfa",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Update Business",
+              "sourceStep": "/api/3/workflow_steps/bd86ebc4-bfc5-4b2c-9c4f-5cbe849ae6f9",
+              "targetStep": "/api/3/workflow_steps/be5116f9-64f5-48a5-9e21-e606beb0ad26"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "2db6886a-fb8b-4139-b88a-ab5dfd4918f1",
+          "collection": "/api/3/workflow_collections/be0266c5-1be3-4cd6-a3a5-82bc3fd23cf9",
+          "triggerLimit": null,
+          "description": "Creates a new Business for verification and due diligence. Once created, Middesk will automatically begin the process of verifying the legitimacy of this Business and evaluating a number of other risk signals about this Business entity.",
+          "name": "Create Business",
+          "tag": "#Middesk",
+          "recordTags": [
+            "Middesk",
+            "middesk"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/3c0c40fd-5c27-4149-a13f-c9959d0e2751",
+          "steps": [
+            {
+              "uuid": "3c0c40fd-5c27-4149-a13f-c9959d0e2751",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "47fb9258-a758-4da4-b74c-7237c3af04f3",
+                "title": "Middesk: Create Business",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "04c3ef2e-0599-4f7d-927d-a49dc2a7440a",
+              "@type": "WorkflowStep",
+              "name": "Create Business",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Middesk",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "middesk",
+                "operation": "create_business",
+                "operationTitle": "Create Business",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "45db0d6f-9a56-494d-822e-a85647318708",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Business",
+              "sourceStep": "/api/3/workflow_steps/3c0c40fd-5c27-4149-a13f-c9959d0e2751",
+              "targetStep": "/api/3/workflow_steps/04c3ef2e-0599-4f7d-927d-a49dc2a7440a"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
