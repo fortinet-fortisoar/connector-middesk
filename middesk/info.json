@@ -32,8 +32,8 @@
               "title": "API Key",
               "name": "token",
               "type": "text",
-              "description": "Specify the PolySwarm API Key through which you will connect and perform actions on PolySwarm.",
-              "tooltip": "Specify the PolySwarm API Key through which you will connect and perform actions on PolySwarm.",
+              "description": "Specify the Middesk API Key through which you will connect and perform actions on Middesk.",
+              "tooltip": "Specify the Middesk API Key through which you will connect and perform actions on Middesk.",
               "required": true,
               "editable": true,
               "visible": true
@@ -504,13 +504,13 @@
       "parameters": [
         {
           "title": "ID",
-          "description": "Specify the id of the Business to retrieve",
+          "description": "Specify the id of the Business to update",
           "required": true,
           "editable": true,
           "visible": true,
           "type": "text",
           "name": "id",
-          "tooltip": "Specify the id of the Business to retrieve"
+          "tooltip": "Specify the id of the Business to update"
         },
         {
           "title": "Name of Business",
@@ -939,6 +939,7 @@
           "visible": true,
           "type": "text",
           "name": "formation",
+          "placeholder": "E.g: CA",
           "tooltip": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in)"
         },
         {
