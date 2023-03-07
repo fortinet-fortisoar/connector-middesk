@@ -19,14 +19,14 @@
         "visible": true,
         "type": "select",
         "options": [
-          "API keys",
-          "OAuth access tokens - on behalf of account owners"
+          "API Key",
+          "OAuth Access Token - on behalf of account owners"
         ],
         "name": "auth_type",
-        "value": "API keys",
+        "value": "API Key",
         "description": "Select the method using which you will get authenticated to access the Middesk APIs. You can choose between API keys or OAuth access tokens - on behalf of account owners. For more information, see the Getting Access Code section.",
         "onchange": {
-          "API keys": [
+          "API Key": [
             {
               "title": "API Key",
               "name": "token",
@@ -38,7 +38,7 @@
               "visible": true
             }
           ],
-          "OAuth access tokens - on behalf of account owners": [
+          "OAuth Access Token - on behalf of account owners": [
             {
               "title": "Client ID",
               "name": "client_id",
@@ -97,11 +97,290 @@
   },
   "operations": [
     {
-      "title": "List Businesses",
-      "description": "Retrieves the details of all Businesses that have run through Middesk.",
-      "operation": "list_businesses",
+      "title": "Create Business",
+      "description": "Creates a new Business for verification and due diligence. Once created, Middesk will automatically begin the process of verifying the legitimacy of this Business and evaluating a number of other risk signals about this Business entity.",
+      "operation": "create_business",
       "category": "investigation",
-      "annotation": "list_businesses",
+      "annotation": "create_business",
+      "parameters": [
+        {
+          "title": "Name",
+          "description": "Specify the legal entity name of a Business",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "name",
+          "tooltip": "Specify the legal entity name of a Business"
+        },
+        {
+          "title": "Tax Identification Number",
+          "description": "Specify the business' tax identification number",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tin",
+          "tooltip": "Specify the business' tax identification number"
+        },
+        {
+          "title": "Website",
+          "description": "Specify the business website",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "website",
+          "tooltip": "Specify the business website"
+        },
+        {
+          "title": "Phone Numbers",
+          "description": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "phone_numbers",
+          "tooltip": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values."
+        },
+        {
+          "title": "External ID",
+          "description": "Specify the custom field identifier for system outside Middesk",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "external_id",
+          "tooltip": "Specify the custom field identifier for system outside Middesk"
+        },
+        {
+          "title": "Orders",
+          "description": "Specify the orders for the types of products you would like Middesk to fulfill for the business you're submitting.You can specify multiple orders as comma-separated values.For more details (https://docs.middesk.com/reference/order). Valid values are identity, tin, documents, and liens.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "orders",
+          "tooltip": "Specify the orders for the types of products you would like Middesk to fulfill for the business you're submitting.You can specify multiple orders as comma-separated values.For more details (https://docs.middesk.com/reference/order). Valid values are identity, tin, documents, and liens."
+        },
+        {
+          "title": "Tags",
+          "description": "Specify the tags. You can specify multiple tags as comma-separated values. Any tag can be added (Note that low_priority is a reserved tag, and will affect business turnaround time).",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "tags",
+          "tooltip": "Specify the tags. You can specify multiple tags as comma-separated values. Any tag can be added (Note that low_priority is a reserved tag, and will affect business turnaround time)."
+        },
+        {
+          "title": "Formation",
+          "description": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in)",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "formation",
+          "placeholder": "E.g: CA",
+          "tooltip": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in)"
+        },
+        {
+          "title": "Names",
+          "description": "Specify a list of entity names of the business (Doing Business As names supported here)",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "names",
+          "tooltip": "Specify a list of entity names of the business (Doing Business As names supported here) e.g: [\n        {\n            \"name\": \"abc\",\n            \"name_type\": \"dba\"\n        }\n    ]"
+        },
+        {
+          "title": "Addresses",
+          "description": "Specify the list of addresses (places of business)",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "addresses",
+          "tooltip": "Specify the list of addresses (places of business) e.g: [\n        {\n            \"address_line1\": \"577 howard street\",\n            \"address_line2\": \"suite 400\",\n            \"city\": \"san francisco\",\n            \"state\": \"CA\",\n            \"postal_code\": \"94105\",\n            \"full_address\": \"577 howard st, suite 400, san francisco CA 94105\"\n        }\n    ] Note address_line1, city, state, postal_code are mandatory fields"
+        },
+        {
+          "title": "People",
+          "description": "Specify a list of people associated with the business",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "people",
+          "tooltip": "Specify a list of people associated with the business e.g: [\n        {\n            \"name\": \"Kyle Mack\",\n            \"first_name\": \"Kyle\",\n            \"last_name\": \"Kyle\",\n            \"dob\": \"YYYY/MM/DD\",\n            \"ssn\": \"abc\",\n            \"address_line1\": \"577 howard street\",\n            \"address_line2\": \"suite 400\",\n            \"city\": \"san francisco\",\n            \"state\": \"CA\",\n            \"postal_code\": \"94105\",\n            \"phone_number\": \"6507970487\",\n            \"email\": \"abc@xyz.com\",\n            \"device_session_id\": \"abc\"\n        }\n    ] Note name is a mandatory field"
+        }
+      ],
+      "output_schema": {
+        "object": "",
+        "id": "",
+        "external_id": "",
+        "name": "",
+        "created_at": "",
+        "updated_at": "",
+        "status": "",
+        "tags": [],
+        "requester": {
+          "id": "",
+          "type": "",
+          "name": "",
+          "requested_at": ""
+        },
+        "assignee_id": "",
+        "supported_document_types": [],
+        "review": "",
+        "tin": {
+          "name": "",
+          "tin": "",
+          "mismatch": "",
+          "unknown": "",
+          "verified": "",
+          "error": "",
+          "updated_at": "",
+          "business_id": "",
+          "issued": "",
+          "verified_by": ""
+        },
+        "business_batch_id": "",
+        "formation": "",
+        "website": {
+          "object": "",
+          "id": "",
+          "url": "",
+          "status": "",
+          "title": "",
+          "description": "",
+          "domain": "",
+          "pages": [],
+          "created_at": "",
+          "updated_at": "",
+          "parked": "",
+          "error": "",
+          "business_id": "",
+          "business_name_match": "",
+          "phone_numbers": [],
+          "addresses": []
+        },
+        "watchlist": "",
+        "bankruptcies": [],
+        "certifications": [],
+        "documents": [],
+        "liens": [],
+        "names": [
+          {
+            "object": "",
+            "id": "",
+            "name": "",
+            "submitted": "",
+            "type": "",
+            "business_id": "",
+            "sources": []
+          }
+        ],
+        "addresses": [
+          {
+            "object": "",
+            "address_line1": "",
+            "address_line2": "",
+            "city": "",
+            "state": "",
+            "postal_code": "",
+            "full_address": "",
+            "submitted": "",
+            "id": "",
+            "latitude": "",
+            "longitude": "",
+            "property_type": "",
+            "deliverable": "",
+            "deliverability_analysis": "",
+            "street_view_available": "",
+            "labels": [],
+            "created_at": "",
+            "updated_at": "",
+            "registered_agent_name": "",
+            "cmra": "",
+            "business_id": "",
+            "sources": []
+          }
+        ],
+        "people": [],
+        "phone_numbers": [
+          {
+            "object": "",
+            "phone_number": ""
+          }
+        ],
+        "profiles": [],
+        "registrations": [],
+        "orders": [
+          {
+            "object": "",
+            "id": "",
+            "created_at": "",
+            "updated_at": "",
+            "completed_at": "",
+            "status": "",
+            "product": "",
+            "subproducts": []
+          }
+        ],
+        "industry_classification": "",
+        "subscription": "",
+        "tax_exempt_organization": "",
+        "fmcsa_registrations": [],
+        "litigations": [],
+        "actions": [],
+        "submitted": {
+          "object": "",
+          "name": "",
+          "addresses": [
+            {
+              "full_address": "",
+              "address_line1": "",
+              "address_line2": "",
+              "city": "",
+              "state": "",
+              "postal_code": ""
+            }
+          ],
+          "orders": [
+            {
+              "product": ""
+            }
+          ],
+          "people": [],
+          "phone_numbers": [
+            {
+              "phone_number": ""
+            }
+          ],
+          "tags": [],
+          "external_id": "",
+          "tin": {
+            "tin": ""
+          },
+          "website": {
+            "url": ""
+          },
+          "assignee_id": "",
+          "formation": {
+            "formation_state": ""
+          },
+          "names": ""
+        }
+      },
+      "enabled": true
+    },
+    {
+      "title": "Get Businesses List",
+      "description": "Retrieves the details of all Businesses that have run through Middesk.",
+      "operation": "get_businesses_list",
+      "category": "investigation",
+      "annotation": "get_businesses_list",
       "parameters": [
         {
           "title": "Offset",
@@ -183,7 +462,7 @@
       "annotation": "get_business",
       "parameters": [
         {
-          "title": "ID",
+          "title": "Business ID",
           "description": "Specify the id of the Business to retrieve",
           "required": true,
           "editable": true,
@@ -502,7 +781,7 @@
       "annotation": "update_business",
       "parameters": [
         {
-          "title": "ID",
+          "title": "Business ID",
           "description": "Specify the id of the Business to update",
           "required": true,
           "editable": true,
@@ -848,285 +1127,6 @@
           },
           "assignee_id": "",
           "formation": "",
-          "names": ""
-        }
-      },
-      "enabled": true
-    },
-    {
-      "title": "Create Business",
-      "description": "Creates a new Business for verification and due diligence. Once created, Middesk will automatically begin the process of verifying the legitimacy of this Business and evaluating a number of other risk signals about this Business entity.",
-      "operation": "create_business",
-      "category": "investigation",
-      "annotation": "create_business",
-      "parameters": [
-        {
-          "title": "Name",
-          "description": "Specify the legal entity name of a Business",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "name",
-          "tooltip": "Specify the legal entity name of a Business"
-        },
-        {
-          "title": "Tax Identification Number",
-          "description": "Specify the business' tax identification number",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "tin",
-          "tooltip": "Specify the business' tax identification number"
-        },
-        {
-          "title": "Website",
-          "description": "Specify the business website",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "website",
-          "tooltip": "Specify the business website"
-        },
-        {
-          "title": "Phone Numbers",
-          "description": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "phone_numbers",
-          "tooltip": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values."
-        },
-        {
-          "title": "External ID",
-          "description": "Specify the custom field identifier for system outside Middesk",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "external_id",
-          "tooltip": "Specify the custom field identifier for system outside Middesk"
-        },
-        {
-          "title": "Orders",
-          "description": "Specify the orders for the types of products you would like Middesk to fulfill for the business you're submitting.You can specify multiple orders as comma-separated values.For more details (https://docs.middesk.com/reference/order). Valid values are identity, tin, documents, and liens.",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "orders",
-          "tooltip": "Specify the orders for the types of products you would like Middesk to fulfill for the business you're submitting.You can specify multiple orders as comma-separated values.For more details (https://docs.middesk.com/reference/order). Valid values are identity, tin, documents, and liens."
-        },
-        {
-          "title": "Tags",
-          "description": "Specify the tags. You can specify multiple tags as comma-separated values. Any tag can be added (Note that low_priority is a reserved tag, and will affect business turnaround time).",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "tags",
-          "tooltip": "Specify the tags. You can specify multiple tags as comma-separated values. Any tag can be added (Note that low_priority is a reserved tag, and will affect business turnaround time)."
-        },
-        {
-          "title": "Formation",
-          "description": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in)",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "text",
-          "name": "formation",
-          "placeholder": "E.g: CA",
-          "tooltip": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in)"
-        },
-        {
-          "title": "Names",
-          "description": "Specify a list of entity names of the business (Doing Business As names supported here)",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "json",
-          "name": "names",
-          "tooltip": "Specify a list of entity names of the business (Doing Business As names supported here) e.g: [\n        {\n            \"name\": \"abc\",\n            \"name_type\": \"dba\"\n        }\n    ]"
-        },
-        {
-          "title": "Addresses",
-          "description": "Specify the list of addresses (places of business)",
-          "required": true,
-          "editable": true,
-          "visible": true,
-          "type": "json",
-          "name": "addresses",
-          "tooltip": "Specify the list of addresses (places of business) e.g: [\n        {\n            \"address_line1\": \"577 howard street\",\n            \"address_line2\": \"suite 400\",\n            \"city\": \"san francisco\",\n            \"state\": \"CA\",\n            \"postal_code\": \"94105\",\n            \"full_address\": \"577 howard st, suite 400, san francisco CA 94105\"\n        }\n    ] Note address_line1, city, state, postal_code are mandatory fields"
-        },
-        {
-          "title": "People",
-          "description": "Specify a list of people associated with the business",
-          "required": false,
-          "editable": true,
-          "visible": true,
-          "type": "json",
-          "name": "people",
-          "tooltip": "Specify a list of people associated with the business e.g: [\n        {\n            \"name\": \"Kyle Mack\",\n            \"first_name\": \"Kyle\",\n            \"last_name\": \"Kyle\",\n            \"dob\": \"YYYY/MM/DD\",\n            \"ssn\": \"abc\",\n            \"address_line1\": \"577 howard street\",\n            \"address_line2\": \"suite 400\",\n            \"city\": \"san francisco\",\n            \"state\": \"CA\",\n            \"postal_code\": \"94105\",\n            \"phone_number\": \"6507970487\",\n            \"email\": \"abc@xyz.com\",\n            \"device_session_id\": \"abc\"\n        }\n    ] Note name is a mandatory field"
-        }
-      ],
-      "output_schema": {
-        "object": "",
-        "id": "",
-        "external_id": "",
-        "name": "",
-        "created_at": "",
-        "updated_at": "",
-        "status": "",
-        "tags": [],
-        "requester": {
-          "id": "",
-          "type": "",
-          "name": "",
-          "requested_at": ""
-        },
-        "assignee_id": "",
-        "supported_document_types": [],
-        "review": "",
-        "tin": {
-          "name": "",
-          "tin": "",
-          "mismatch": "",
-          "unknown": "",
-          "verified": "",
-          "error": "",
-          "updated_at": "",
-          "business_id": "",
-          "issued": "",
-          "verified_by": ""
-        },
-        "business_batch_id": "",
-        "formation": "",
-        "website": {
-          "object": "",
-          "id": "",
-          "url": "",
-          "status": "",
-          "title": "",
-          "description": "",
-          "domain": "",
-          "pages": [],
-          "created_at": "",
-          "updated_at": "",
-          "parked": "",
-          "error": "",
-          "business_id": "",
-          "business_name_match": "",
-          "phone_numbers": [],
-          "addresses": []
-        },
-        "watchlist": "",
-        "bankruptcies": [],
-        "certifications": [],
-        "documents": [],
-        "liens": [],
-        "names": [
-          {
-            "object": "",
-            "id": "",
-            "name": "",
-            "submitted": "",
-            "type": "",
-            "business_id": "",
-            "sources": []
-          }
-        ],
-        "addresses": [
-          {
-            "object": "",
-            "address_line1": "",
-            "address_line2": "",
-            "city": "",
-            "state": "",
-            "postal_code": "",
-            "full_address": "",
-            "submitted": "",
-            "id": "",
-            "latitude": "",
-            "longitude": "",
-            "property_type": "",
-            "deliverable": "",
-            "deliverability_analysis": "",
-            "street_view_available": "",
-            "labels": [],
-            "created_at": "",
-            "updated_at": "",
-            "registered_agent_name": "",
-            "cmra": "",
-            "business_id": "",
-            "sources": []
-          }
-        ],
-        "people": [],
-        "phone_numbers": [
-          {
-            "object": "",
-            "phone_number": ""
-          }
-        ],
-        "profiles": [],
-        "registrations": [],
-        "orders": [
-          {
-            "object": "",
-            "id": "",
-            "created_at": "",
-            "updated_at": "",
-            "completed_at": "",
-            "status": "",
-            "product": "",
-            "subproducts": []
-          }
-        ],
-        "industry_classification": "",
-        "subscription": "",
-        "tax_exempt_organization": "",
-        "fmcsa_registrations": [],
-        "litigations": [],
-        "actions": [],
-        "submitted": {
-          "object": "",
-          "name": "",
-          "addresses": [
-            {
-              "full_address": "",
-              "address_line1": "",
-              "address_line2": "",
-              "city": "",
-              "state": "",
-              "postal_code": ""
-            }
-          ],
-          "orders": [
-            {
-              "product": ""
-            }
-          ],
-          "people": [],
-          "phone_numbers": [
-            {
-              "phone_number": ""
-            }
-          ],
-          "tags": [],
-          "external_id": "",
-          "tin": {
-            "tin": ""
-          },
-          "website": {
-            "url": ""
-          },
-          "assignee_id": "",
-          "formation": {
-            "formation_state": ""
-          },
           "names": ""
         }
       },

@@ -104,7 +104,7 @@ def build_params(key, value):
     return input_format
 
 
-def list_businesses(config, params):
+def get_businesses_list(config, params):
     MD = Middesk(config)
     params = check_for_data(params)
     return MD.make_api_call(params=params)
@@ -150,12 +150,12 @@ def create_business(config, params):
 
 
 def _check_health(config):
-    if list_businesses(config, params={}):
+    if get_businesses_list(config, params={}):
         return True
 
 
 operations = {
-    'list_businesses': list_businesses,
+    'get_businesses_list': get_businesses_list,
     'get_business': get_business,
     'update_business': update_business,
     'create_business': create_business
