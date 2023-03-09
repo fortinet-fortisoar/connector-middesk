@@ -53,8 +53,8 @@
               "title": "Client Secret",
               "name": "client_secret",
               "type": "password",
-              "description": "Unique Client Secret of the Middesk that is used to create an authentication token required to access the API.",
-              "tooltip": "Unique Client Secret of the Middesk that is used to create an authentication token required to access the API.Located on the https://app.middesk.com/settings/credentials",
+              "description": "Unique Client Secret of the Middesk that is used to create an authentication token required to access the API. Located on the https://app.middesk.com/settings/credentials",
+              "tooltip": "Unique Client Secret of the Middesk that is used to create an authentication token required to access the API.",
               "required": true,
               "editable": true,
               "visible": true
