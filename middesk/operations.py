@@ -90,7 +90,7 @@ def check_for_data(params):
 def make_list_value_params(value):
     if isinstance(value, list):
         return value
-    return str(value).split()
+    return [x.strip() for x in str(value).split(",")]
 
 
 def build_params(key, value):
