@@ -9,7 +9,7 @@
   "category": "IT Service Management",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/middesk/531/middesk-v1-0-0",
   "configuration": {
     "fields": [
       {
@@ -43,7 +43,7 @@
               "title": "Client ID",
               "name": "client_id",
               "type": "text",
-              "description": "Unique ID of the Middesk that is used to create an authentication token required to access the API. Located on the https://app.middesk.com/settings/credentials.",
+              "description": "Specify the unique ID used to create an authentication token required to access the API. Access https://app.middesk.com/settings/credentials to retrieve the unique ID.",
               "tooltip": "Unique ID of the Middesk that is used to create an authentication token required to access the API.",
               "required": true,
               "editable": true,
@@ -53,7 +53,7 @@
               "title": "Client Secret",
               "name": "client_secret",
               "type": "password",
-              "description": "Unique Client Secret of the Middesk that is used to create an authentication token required to access the API. Located on the https://app.middesk.com/settings/credentials",
+              "description": "Specify the unique Client Secret to create an authentication token required to access the API. Access https://app.middesk.com/settings/credentials to retrieve the Client Secret.",
               "tooltip": "Unique Client Secret of the Middesk that is used to create an authentication token required to access the API.",
               "required": true,
               "editable": true,
@@ -64,7 +64,7 @@
               "name": "code",
               "type": "password",
               "tooltip": "The authorization code that you acquired in the authorization step.",
-              "description": "The authorization code that you acquired during the authorization step. For more information, see Getting Access Code section. using the OAuth Access Token - on behalf of account owners",
+              "description": "Specify the authorization code that you acquired during the authorization step. For more information, see the topic Using the OAuth Access Token - on behalf of account owners Getting Access Code section.",
               "required": true,
               "editable": true,
               "visible": true
@@ -91,14 +91,14 @@
         "type": "checkbox",
         "name": "verify_ssl",
         "value": true,
-        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not.\nBy default, this option is set to True."
       }
     ]
   },
   "operations": [
     {
       "title": "Create Business",
-      "description": "Creates a new Business for verification and due diligence. Once created, Middesk will automatically begin the process of verifying the legitimacy of this Business and evaluating a number of other risk signals about this Business entity.",
+      "description": "Creates a new business for verification and due diligence. Once created, Middesk automatically begins the process of verifying the legitimacy of this business and evaluating many other risk signals about this business entity.",
       "operation": "create_business",
       "category": "investigation",
       "annotation": "create_business",
@@ -115,7 +115,7 @@
         },
         {
           "title": "Tax Identification Number",
-          "description": "Specify the business' tax identification number",
+          "description": "Specify the tax identification number of the business.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -125,7 +125,7 @@
         },
         {
           "title": "Website",
-          "description": "Specify the business website",
+          "description": "Specify the website of the business.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -135,7 +135,7 @@
         },
         {
           "title": "Phone Numbers",
-          "description": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values.",
+          "description": "Specify the phone numbers of the business. You can specify multiple phone numbers as comma-separated values.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -145,7 +145,7 @@
         },
         {
           "title": "External ID",
-          "description": "Specify the custom field identifier for system outside Middesk",
+          "description": "Specify the custom field identifier for systems outside Middesk.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -155,7 +155,7 @@
         },
         {
           "title": "Orders",
-          "description": "Specify the orders for the types of products you would like Middesk to fulfill for the business you're submitting.You can specify multiple orders as comma-separated values.For more details (https://docs.middesk.com/reference/order). Valid values are identity, tin, documents, and liens.",
+          "description": "Specify the orders for the types of products you would like Middesk to fulfill for the business you're submitting. You can specify multiple orders as comma-separated values. For more details (https://docs.middesk.com/reference/order). Valid values are identity, tin, documents, and liens.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -175,7 +175,7 @@
         },
         {
           "title": "Formation",
-          "description": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in)",
+          "description": "Specify the business formation (Two-Letter abbreviation for the state the business was formed in).",
           "required": false,
           "editable": true,
           "visible": true,
@@ -186,7 +186,7 @@
         },
         {
           "title": "Names",
-          "description": "Specify a list of entity names of the business (Doing Business As names supported here)",
+          "description": "Specify a list of entity names of the business (Doing business As names supported here).",
           "required": false,
           "editable": true,
           "visible": true,
@@ -196,7 +196,7 @@
         },
         {
           "title": "Addresses",
-          "description": "Specify the list of addresses (places of business)",
+          "description": "Specify the list of addresses (places of business).",
           "required": true,
           "editable": true,
           "visible": true,
@@ -206,7 +206,7 @@
         },
         {
           "title": "People",
-          "description": "Specify a list of people associated with the business",
+          "description": "Specify a list of people associated with the business.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -377,14 +377,14 @@
     },
     {
       "title": "Get Businesses List",
-      "description": "Retrieves the details of all Businesses that have run through Middesk.",
+      "description": "Retrieves the details of all businesses that have run through Middesk.",
       "operation": "get_businesses_list",
       "category": "investigation",
       "annotation": "get_businesses_list",
       "parameters": [
         {
           "title": "Offset",
-          "description": "Specify the page offset at which you'd like to resume fetching Businesses",
+          "description": "Specify the page offset at which you'd like to resume fetching businesses.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -394,7 +394,7 @@
         },
         {
           "title": "Limit",
-          "description": "Specify the number of Businesses to fetch. Default is 25 Maximum is 30.",
+          "description": "Specify the number of businesses to fetch. The default is 25 Maximum is 30.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -456,14 +456,14 @@
     },
     {
       "title": "Get Business",
-      "description": "Retrieves the details of an existing business based on the id of a Business you have provided",
+      "description": "Retrieves the details of an existing business based on the ID of a business you have provided",
       "operation": "get_business",
       "category": "investigation",
       "annotation": "get_business",
       "parameters": [
         {
           "title": "Business ID",
-          "description": "Specify the id of the Business to retrieve",
+          "description": "Specify the ID of the business to retrieve its details.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -775,14 +775,14 @@
     },
     {
       "title": "Update Business",
-      "description": "Updates an existing business based on the id of a Business you have provided",
+      "description": "Updates an existing business based on the ID of a business you have provided",
       "operation": "update_business",
       "category": "investigation",
       "annotation": "update_business",
       "parameters": [
         {
           "title": "Business ID",
-          "description": "Specify the id of the Business to update",
+          "description": "Specify the ID of the business to update on the Middesk server.",
           "required": true,
           "editable": true,
           "visible": true,
@@ -792,7 +792,7 @@
         },
         {
           "title": "Name of Business",
-          "description": "Specify the legal entity name of a Business",
+          "description": "Specify the legal entity name of the business to update on the Middesk server.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -802,7 +802,7 @@
         },
         {
           "title": "Status",
-          "description": "Specify the status of the business lifecycle.Note can only be done once the business status has reached in_review.",
+          "description": "Specify the status of the business lifecycle to update on the Middesk server.\nNOTE: This operation can be performed only after the business status has reached in_review.\n",
           "required": false,
           "editable": true,
           "visible": true,
@@ -816,7 +816,7 @@
         },
         {
           "title": "Assignee ID",
-          "description": "Specify the user ID to set the assignee for review",
+          "description": "Specify the user ID to set the assignee for review.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -826,7 +826,7 @@
         },
         {
           "title": "Website",
-          "description": "Specify the business website",
+          "description": "Specify the business website to update on Middesk.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -836,7 +836,7 @@
         },
         {
           "title": "External ID",
-          "description": "Specify the custom field identifier for system outside Middesk",
+          "description": "Specify the custom field identifier for systems outside Middesk.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -846,7 +846,7 @@
         },
         {
           "title": "Phone Number",
-          "description": "Specify the phone numbers. You can specify multiple phone numbers as comma-separated values.",
+          "description": "Specify the phone numbers to update on Middesk. You can specify multiple phone numbers as comma-separated values.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -856,7 +856,7 @@
         },
         {
           "title": "Addresses",
-          "description": "Specify the list of addresses (places of business)",
+          "description": "Specify the list of addresses (places of business) to update on the Middesk server.",
           "required": false,
           "editable": true,
           "visible": true,
@@ -866,7 +866,7 @@
         },
         {
           "title": "People",
-          "description": "Specify a list of people associated with the business",
+          "description": "Specify a list of people associated with the business to update on the Middesk server.",
           "required": false,
           "editable": true,
           "visible": true,
